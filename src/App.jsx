@@ -1,4 +1,5 @@
 
+import Calculator from './Components/Calculator'
 import './index.css'
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-yellow-500'>Hi there</h1>
+    <Calculator/>
     </>
   )
 }
