@@ -1,6 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 
 const Calculator = () => {
+    const Calculator = () => {
+        const [display, setDisplay] = useState('0');
+        const [firstOperand, setFirstOperand] = useState(null);
+        const [operator, setOperator] = useState(null);
+        const [waitingForSecondOperand, setWaitingForSecondOperand] = useState(false);
+    }
+
+
+
   return (
     <div className="w-64 mx-auto p-4 border border-gray-300 rounded-lg shadow-lg mt-10">
       <div className="bg-gray-100 p-2 rounded-md">
