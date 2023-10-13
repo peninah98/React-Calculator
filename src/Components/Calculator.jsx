@@ -30,7 +30,7 @@ const Calculator = () => {
           {buttons}
         </div>
       </div>
-      <div className="bg-gray-600 p-2 w-1/2 m-auto flex justify-between">
+      <div className="bg-gray-600 p-2 w-1/2 m-auto flex justify-center gap-2">
         <button
           className="shadow-xl w-12 p-2 rounded-md bg-orange-200"
           onClick={() => setData(data.substring(0, data.length - 1))}
@@ -44,14 +44,23 @@ const Calculator = () => {
           AC
         </button>
         <button
-          onClick={(e) => setData(data + e.target.value)}
+          onClick={() => {
+            setData((prevData) => {
+              if ( Number(prevData) > 0) {
+                return "-" + prevData;
+              } else if ( Number(prevData) < 0) {
+                return prevData.replace("-", "");
+              }
+              return prevData;
+            });
+          }}
           value="+-"
-          className="shadow-xl w-12 p-2 rounded-md bg-orange-200 "
+          className="shadow-xl w-12 p-2 rounded-md bg-orange-200"
         >
           +-
         </button>
       </div>
-      <div className="bg-gray-600 p-2  grid grid-cols-5 w-1/2 m-auto items-center">
+      <div className="bg-gray-600 p-2 grid grid-cols-5 w-1/2 m-auto  items-center justify-center">
         <button
           onClick={(e) => setData(data + e.target.value)}
           value="+"
