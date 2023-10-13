@@ -21,10 +21,10 @@ const Calculator = () => {
   return (
     <div>
       <div>
-        <div className="m-auto  border border-black w-1/2 mt-10 mb-6 py-4 bg-orange-100 px-2 text-gray-700">
+        <div className="m-auto border border-black w-1/2 mt-10 mb-6 py-4 bg-orange-100 px-2 text-gray-700">
           {data}
         </div>
-        <div className="m-auto  grid grid-cols-3 w-1/2 justify-center gap-1 items-center">
+        <div className="m-auto grid grid-cols-3 w-1/2 justify-center gap-1 items-center">
           {buttons}
         </div>
       </div>
@@ -58,7 +58,7 @@ const Calculator = () => {
           +-
         </button>
       </div>
-      <div className="bg-gray-600 p-1 grid grid-cols-5 w-1/2 m-auto  items-center justify-center">
+      <div className="bg-gray-600 p-1 grid grid-cols-5 w-1/2 m-auto items-center justify-center">
         <button
           onClick={e=> setData(data + e.target.value)}
           value="+"
