@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Calculator = () => {
   const [data, setData] = useState("");
-
   const buttons = [];
-
-  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, ".", "%"].forEach((element) => {
+  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, ".", "%"].forEach(element => {
     buttons.push(
       <button
-        onClick={(e) => {
+        onClick={e=> {
           setData(data + e.target.getAttribute("data-value"));
         }}
         data-value={element}
@@ -46,9 +44,9 @@ const Calculator = () => {
         <button
           onClick={() => {
             setData((prevData) => {
-              if ( Number(prevData) > 0) {
+              if (Number(prevData) > 0) {
                 return "-" + prevData;
-              } else if ( Number(prevData) < 0) {
+              } else if (Number(prevData) < 0) {
                 return prevData.replace("-", "");
               }
               return prevData;
@@ -62,28 +60,28 @@ const Calculator = () => {
       </div>
       <div className="bg-gray-600 p-1 grid grid-cols-5 w-1/2 m-auto  items-center justify-center">
         <button
-          onClick={(e) => setData(data + e.target.value)}
+          onClick={e=> setData(data + e.target.value)}
           value="+"
           className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
         >
           +
         </button>
         <button
-          onClick={(e) => setData(data + e.target.value)}
+          onClick={e=> setData(data + e.target.value)}
           value="-"
           className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
         >
           -
         </button>
         <button
-          onClick={(e) => setData(data + e.target.value)}
+          onClick={e=> setData(data + e.target.value)}
           value="*"
           className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
         >
           *
         </button>
         <button
-          onClick={(e) => setData(data + e.target.value)}
+          onClick={e=> setData(data + e.target.value)}
           value="/"
           className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
         >
