@@ -1,45 +1,110 @@
-import React from 'react';
-import { useState } from 'react';
+import { useState } from "react";
 
 const Calculator = () => {
-    const Calculator = () => {
-        const [display, setDisplay] = useState('0');
-        const [firstOperand, setFirstOperand] = useState(null);
-        const [operator, setOperator] = useState(null);
-        const [waitingForSecondOperand, setWaitingForSecondOperand] = useState(false);
-    }
-
-
+  const [data, setData] = useState("");
+  const buttons = [];
+  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, ".", "%"].forEach(element => {
+    buttons.push(
+      <button
+        onClick={e=> {
+          setData(data + e.target.getAttribute("data-value"));
+        }}
+        data-value={element}
+        key={element}
+        className="bg-yellow-600 rounded-md p-1 border text-bold text-2xl hover:text-white hover:bg-gray-700"
+      >
+        {element}
+      </button>
+    );
+  });
 
   return (
-    <div className="w-64 mx-auto p-4 border border-gray-300 rounded-lg shadow-lg mt-10">
-      <div className="bg-gray-100 p-2 rounded-md">
-        <input
-          id="display"
-          className="w-full text-right text-2xl font-semibold "
-          type="text"
-       
-        />
+    <div>
+      <div>
+        <div className="m-auto border border-black w-1/2 mt-10 mb-6 py-4 bg-orange-100 px-2 text-gray-700">
+          {data}
+        </div>
+        <div className="m-auto grid grid-cols-3 w-1/2 justify-center gap-1 items-center">
+          {buttons}
+        </div>
       </div>
-      <div className="grid grid-cols-4 gap-2 mt-4">
-        <button className="col-span-2 p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">AC</button>
-        <button className="p-2 text-2xl  bg-orange-500 rounded-md hover:bg-gray-500 hover:text-white">+-</button>
-        <button className="p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">%</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">7</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">8</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">9</button>
-        <button className="p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">*</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">4</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">5</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">6</button>
-        <button className="p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">-</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">1</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">2</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-400 hover:text-white">3</button>
-        <button className="p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">Del</button>
-        <button className="col-span-2 p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">0</button>
-        <button className="p-2 text-2xl bg-gray-100 rounded-md hover:bg-gray-500 hover:text-white">.</button>
-        <button className="p-2 text-2xl bg-orange-500 rounded-md hover:bg-gray-400 hover:text-white">=</button>
+      <div className="bg-gray-600 p-1 w-1/2 m-auto flex justify-center gap-1">
+        <button
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+          onClick={() => setData(data.substring(0, data.length - 1))}
+        >
+          Clear
+        </button>
+        <button
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+          onClick={() => setData("")}
+        >
+          AC
+        </button>
+        <button
+          onClick={() => {
+            setData((prevData) => {
+              if (Number(prevData) > 0) {
+                return "-" + prevData;
+              } else if (Number(prevData) < 0) {
+                return prevData.replace("-", "");
+              }
+              return prevData;
+            });
+          }}
+          value="+-"
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+        >
+          +-
+        </button>
+      </div>
+      <div className="bg-gray-600 p-1 grid grid-cols-5 w-1/2 m-auto items-center justify-center">
+        <button
+          onClick={e=> setData(data + e.target.value)}
+          value="+"
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+        >
+          +
+        </button>
+        <button
+          onClick={e=> setData(data + e.target.value)}
+          value="-"
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+        >
+          -
+        </button>
+        <button
+          onClick={e=> setData(data + e.target.value)}
+          value="*"
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+        >
+          *
+        </button>
+        <button
+          onClick={e=> setData(data + e.target.value)}
+          value="/"
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+        >
+          /
+        </button>
+        <button
+          className="shadow-xl w-12 p-1 rounded-md bg-orange-200"
+          onClick={() => {
+            try {
+              setData(
+                String(eval(data)).length > 3 &&
+                  String(eval(data)).includes(".")
+                  ? String(eval(data).toFixed(4))
+                  : String(eval(data))
+              );
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+          value="="
+        >
+          =
+        </button>
       </div>
     </div>
   );
